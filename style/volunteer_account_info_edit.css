@@ -1,0 +1,7 @@
+.profile-pic{
+    width: 100px; 
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    border-radius:50%;
+ }
