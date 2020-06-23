@@ -9,17 +9,25 @@
         <h1>Senior Connect</h1>
         <h2>Log In</h2>
         <p>To begin, please sign in:</p>
-        <form action="" method="POST">
+        <!--TODO Link Login Page to PHP which processes the form submission-->
+        <form action=".php" method="POST">
             <label for="email">Email: </label>
-            <input type="text" name="email" id="email" required>
+            <input type="text" name="email" id="email" placeholder="Email" required>
             <br>
             <label for="password">Password: </label>
-            <input type="password" name="password" id="password" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
             <br>
             <input type="submit" value="Log In">
         </form>
         <p>First time using our service?</p>
         <button onclick="location.href='./signup.html'" type="button"><b>Sign Up</b> by clicking here!</button>
+        <button onclick="location.href='../index.html'" type="button"><b>Return to Home</b></button>
+        <!--TODO Remove These two buttons-->
+        <br>
+        <br>
+        <button onclick="location.href='./m_home.html'" type="button">Assume form submitted - Manager (Temporary button)</button>
+        <button onclick="location.href='./v_home.html'" type="button">Assume form submitted - Volunteer (Temporary button)</button>
+        <!--End of Temporary buttons-->
 
     </body>
 </html>
