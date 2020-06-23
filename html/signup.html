@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/global.css">
+        <title>Sign Up | Senior Connect</title>
+    </head>
+    <body>        
+        <h1>Senior Connect</h1>
+        <h2>Sign Up</h2>
+        <form action="" method="POST">
+            <label for="username">Name: </label>
+            <input type="text" name="username" id="username" placeholder="Name" required>
+            <br>
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <br>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" required>
+            <br>
+            <label for="position">Position: </label>
+            <select name="position" id="position" required>
+                <option value="Volunteer">Volunteer</option>
+                <option value="Manager">Manager</option>
+            </select>
+            <br>
+            <label for="positioncode">Code: </label>
+            <input type="text" name="positioncode" id="positioncode" placeholder="Code to Confirm Position" required>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        <p>Already have an account?</p>
+        <button onclick="location.href='./login.html'" type="button"><b>Log in</b> by clicking here!</button>
+
+    </body>
+</html>
