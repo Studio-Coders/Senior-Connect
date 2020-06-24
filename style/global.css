@@ -1,0 +1,19 @@
+footer {
+    position: relative;
+    margin-top: 15px;
+}
+
+.footerlabel {
+    margin-right: 10px;
+}
+
+.globalhorizontalspacing {
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.backbtn {
+    position: relative;
+    margin: 10px;
+}

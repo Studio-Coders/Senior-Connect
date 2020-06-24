@@ -1,33 +1,79 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link rel="stylesheet" type="text/css" href="css/global.css">
-        <title>Log In | Senior Connect</title>
-    </head>
-    <body>        
-        <h1>Senior Connect</h1>
-        <h2>Log In</h2>
-        <p>To begin, please sign in:</p>
-        <!--TODO Link Login Page to PHP which processes the form submission-->
-        <form action=".php" method="POST">
-            <label for="email">Email: </label>
-            <input type="text" name="email" id="email" placeholder="Email" required>
-            <br>
-            <label for="password">Password: </label>
-            <input type="password" name="password" id="password" placeholder="Password" required>
-            <br>
-            <input type="submit" value="Log In">
-        </form>
-        <p>First time using our service?</p>
-        <button onclick="location.href='./signup.html'" type="button"><b>Sign Up</b> by clicking here!</button>
-        <button onclick="location.href='../index.html'" type="button"><b>Return to Home</b></button>
-        <!--TODO Remove These two buttons-->
-        <br>
-        <br>
-        <button onclick="location.href='./m_home.html'" type="button">Assume form submitted - Manager (Temporary button)</button>
-        <button onclick="location.href='./v_home.html'" type="button">Assume form submitted - Volunteer (Temporary button)</button>
-        <!--End of Temporary buttons-->
+<html lang="en">
 
-    </body>
+<head>
+    <!-- Required bootstrap tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Required bootstrap tags -->
+    <link rel="stylesheet" type="text/css" href="../style/global.css">
+    <link rel="stylesheet" type="text/css" href="../style/login.css">
+    <title>Log In | Senior Connect</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar sticky-top navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="../index.html">Senior Connect</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                </ul>
+                <button onclick="location.href='./login.html'" type="button"
+                    class="btn btn-primary globalhorizontalspacing">Log In</button>
+                <button onclick="location.href='./signup.html'" type="button"
+                    class="btn btn-outline-light globalhorizontalspacing">Sign Up</button>
+            </div>
+        </nav>
+        <button onclick="goBack()" type="button" class="btn btn-dark backbtn"><b>&lt; Back</b></button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+        <h2>Log In</h2>
+        <br>
+    </header>
+
+    <main>
+        <!--TODO Link Login Page to PHP which processes the form submission-->
+        <form action=".php" method="POST" class="formborder">
+            <p>To begin, please sign in:</p>
+            <div class="form-group">
+                <label for="email">Email: </label>
+                <input type="text" name="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password: </label>
+                <input type="password" name="password" class="form-control" id="password" required>
+            </div>
+            <input type="submit" class="btn btn-success" value="Log In">
+        </form>
+        <p class="otheroptions">First time using our service? Sign Up by clicking the button below!</p>
+        <div class="otherbuttons">
+            <button onclick="location.href='./signup.html'" type="button"
+                class="btn btn-outline-success globalhorizontalspacing">Sign Up</button>
+        </div>
+    </main>
+
+    <!--Bootstrap Scripts-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
