@@ -1,0 +1,25 @@
+.cardbuttonspacing {
+    margin-top: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.cardspacing {
+    display: block;
+    float: left;
+    margin: 0.5rem;
+    width: 17rem;
+    height: 17rem;
+}
+
+#cardcontainer {
+    display: block;
+    overflow: auto;
+    float: none;
+    margin: auto;
+    width: 100%;
+    min-width: 22rem;
+    height:auto;
+}

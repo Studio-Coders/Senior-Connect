@@ -1,13 +1,69 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link rel="stylesheet" type="text/css" href="css/global.css">
-        <title>Add a Volunteer | Senior Connect</title>
-    </head>
-    <body>        
-        <h1>Senior Connect</h1>
+<html lang="en">
+
+<head>
+    <!-- Required bootstrap tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Required bootstrap tags -->
+    <link rel="stylesheet" type="text/css" href="../style/global.css">
+    <title>Add a Volunteer | Senior Connect</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="./m_home.html">Senior Connect</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Appointments</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Daily</a>
+                            <a class="dropdown-item" href="#">Weekly</a>
+                            <a class="dropdown-item" href="#">Monthly</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add a Member</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Senior</a>
+                            <a class="dropdown-item" href="./m_addvol.html">Volunteer</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View Members</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Seniors</a>
+                            <a class="dropdown-item" href="#">Volunteers</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./m_account.html">My Account</a>
+                    </li>
+                </ul>
+                <!--TODO logout action-->
+                <form class="form-inline my-2 my-lg-0" action="logout.php">
+                    <button class="btn btn-danger my-2 my-sm-0" type="submit">Log Out</button>
+                </form>
+            </div>
+        </nav>
+        <br>
         <h2>Add a Volunteer</h2>
+        <br>
+    </header>
+
+    <main>
         <form action="" method="POST">
             <label for="username">Volunteer Name: </label>
             <input type="text" name="username" id="username" placeholder="Name" required>
@@ -18,6 +74,29 @@
             <input type="submit" value="Add a Volunteer">
         </form>
         <button onclick="location.href='./homepage.html'" type="button">Cancel</button>
+    </main>
 
-    </body>
+    <footer>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="footerlabel">Manager Page:</li>
+                <li class="breadcrumb-item"><a href="./m_home.html">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Volunteer</li>
+            </ol>
+        </nav>
+    </footer>
+
+    <!--Bootstrap Scripts-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+</body>
+
 </html>
