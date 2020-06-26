@@ -32,12 +32,12 @@
                             <a class="dropdown-item" href="#">Monthly</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add a Member</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Senior</a>
-                            <a class="dropdown-item" href="./m_addvol.html">Volunteer</a>
+                            <a class="dropdown-item active" href="./m_addvol.html">Volunteer <span class="sr-only">(current)</span></a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -58,6 +58,12 @@
                 </form>
             </div>
         </nav>
+        <button onclick="goBack()" type="button" class="btn btn-dark btn-sm backbtn"><b>&lt; Back</b></button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
         <br>
         <h2 class="pagetitle">Add a Volunteer</h2>
         <br>
@@ -73,7 +79,7 @@
                 <label for="positioncode">Code: </label>
                 <input type="text" name="positioncode" id="positioncode" class="form-control" required>
             </div>
-            <input type="submit" class="btn btn-outline-dark" value="Add a Volunteer">
+            <input type="submit" class="btn btn-outline-dark globalhorizontalspacing" value="Add a Volunteer">
             <button onclick="location.href='./m_home.html'" class="btn btn-dark btn-sm globalhorizontalspacing" type="button">Cancel</button>
         </form>
     </main>

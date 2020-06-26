@@ -6,11 +6,23 @@ main {
     width: 180px;
     height: 180px;
     border-radius: 25%;
+}
+
+.picture-edit {
+    float: left;
+    max-width: 200px;
     margin-left: 4rem;
     margin-right: 4rem;
-    float: left;
+}
+
+.changeimgbtn {
+    margin-top: 10px;
 }
 
 .profile-description {
     padding-top: 1rem;
+}
+
+.edit-form {
+    display: inline-block;
 }

@@ -1,17 +1,146 @@
 <!doctype html>
-<html>
-    <head>
-        <link rel="stylesheet" href="../style/main.css">
-        <link rel="stylesheet" href="../style/volunteer_account_info.css">
-        <title>Volunteer Account Info | Senior Connect</title>
-    </head>
-    <body>
-        <h2>Volunteer Account Info</h2>
-        <button onclick="location.href='./v_account_edit.html'" type="button">[Edit profile]</button><br><br>
-        <button onclick="location.href='./v_pw_edit.html'" type="button">[Change Password]</button><br><br>
-        <img class="profile-pic" src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="anonymous profile picture">
-        <p>Username:</p> 
-        <p>Email:</p>
-    </body>
-</html>
+<html lang="en">
 
+<head>
+    <!-- Required bootstrap tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Required bootstrap tags -->
+    <link rel="stylesheet" type="text/css" href="../style/global.css" />
+    <link rel="stylesheet" type="text/css" href="../style/v_account.css" />
+    <title>Account Settings | Senior Connect</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="./v_home.html">Senior Connect</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./v_profile.html">My Profile</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./v_account.html">Account Settings <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+                    alt="profile picture" class="profile-pic globalhorizontalspacing">
+                <!--TODO logout action-->
+                <form class="form-inline my-2 my-lg-0" action="logout.php">
+                    <button class="btn btn-danger my-2 my-sm-0 globalhorizontalspacing" type="submit">Log Out</button>
+                </form>
+            </div>
+        </nav>
+        <button onclick="goBack()" type="button" class="btn btn-dark btn-sm backbtn"><b>&lt; Back</b></button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+        <br><br>
+        <h2 class="pagetitle">Account Settings</h2>
+        <br>
+    </header>
+
+    <main>
+        <div class="acnt-section">
+            <p><b>Name:</b></p>
+            <p>Ethan Kim</p>
+            <button class="btn btn-link" data-toggle="collapse" href="#edit-name" role="button"
+                aria-expanded="false">Edit</button>
+            <div class="collapse vertical-margins" id="edit-name">
+                <div class="card card-body" style="max-width: 28rem;">
+                    <form action=".php" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name: </label>
+                            <input type="text" name="name" class="form-control" id="name" required>
+                        </div>
+                        <input type="submit" class="btn btn-dark" value="Save Changes">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="acnt-section">
+            <p><b>Email:</b></p>
+            <p>robhn38426@gmail.com</p>
+            <button class="btn btn-link" data-toggle="collapse" href="#edit-email" role="button"
+            aria-expanded="false">Edit</button>
+            <div class="collapse vertical-margins" id="edit-email">
+                <div class="card card-body" style="max-width: 28rem;">
+                    <form action=".php" method="POST">
+                        <div class="form-group">
+                            <label for="email">Email: </label>
+                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailhelp" required>
+                            <small id="emailhelp" class="form-text text-muted">
+                                Note that you must re-vertify your email address.
+                            </small>
+                        </div>
+                        <input type="submit" class="btn btn-dark" value="Save Changes">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="acnt-section">
+            <p><b>Password:</b> ********</p>
+            <button class="btn btn-link" data-toggle="collapse" href="#edit-pass" role="button"
+            aria-expanded="false">Change Password</button>
+            <div class="collapse vertical-margins" id="edit-pass">
+                <div class="card card-body" style="max-width: 28rem;">
+                    <form action=".php" method="POST">
+                        <div class="form-group">
+                            <label for="currentpass">Current Password: </label>
+                            <input type="password" name="currentpass" class="form-control" id="currentpass" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newpass">New Password: </label>
+                            <input type="password" name="newpass" class="form-control" id="newpass" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cfmpass">Confirm Password: </label>
+                            <input type="password" name="cfmpass" class="form-control" id="cfmpass" aria-describedby="passhelp" required>
+                            <small id="passhelp" class="form-text text-muted">
+                                Please repeat your new password.
+                            </small>
+                        </div>
+                        <input type="submit" class="btn btn-dark" value="Save Changes">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="footerlabel">Volunteer Page:</li>
+                <li class="breadcrumb-item"><a href="./v_home.html">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Account Settings</li>
+            </ol>
+        </nav>
+    </footer>
+
+    <!--Bootstrap Scripts-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

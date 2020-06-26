@@ -26,8 +26,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Appointments</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./v_profile.html">My Profile</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./v_profile.html">My Profile <span
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./v_account.html">Account Settings</a>
@@ -41,24 +42,31 @@
                 </form>
             </div>
         </nav>
+        <button onclick="goBack()" type="button" class="btn btn-dark btn-sm backbtn"><b>&lt; Back</b></button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
     </header>
 
     <main>
         <img src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
             alt="profile picture" class="body-profile-pic">
         <div class="profile-description">
-            <p><b>Name:</b></p>
-            <p><b>Interests:</b></p>
-            <button onclick="location.href='v_profile_edit.html'" type="button" class="btn btn-light">Edit profile</button><br><br>
+            <h4><em>Ethan Kim</em></h4>
+            <p><b>Interests:</b> Guitar</p>
+            <button onclick="location.href='v_profile_edit.html'" type="button" class="btn btn-light">Edit
+                profile</button><br><br>
         </div>
-        
+
     </main>
 
     <footer>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="footerlabel">Volunteer Page:</li>
-                <li class="breadcrumb-item"><a href="./m_home.html">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="./v_home.html">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">My Profile</li>
             </ol>
         </nav>
