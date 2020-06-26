@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="./m_home.html">Senior Connect</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,31 +53,35 @@
                 </ul>
                 <!--TODO logout action-->
                 <form class="form-inline my-2 my-lg-0" action="logout.php">
-                    <button class="btn btn-danger my-2 my-sm-0" type="submit">Log Out</button>
+                    <button class="btn btn-danger my-2 my-sm-0 globalhorizontalspacing" type="submit">Log Out</button>
                 </form>
             </div>
         </nav>
         <br>
-        <h2>Account Information</h2>
+        <h2 class="pagetitle">Account Information</h2>
         <br>
     </header>
     <main>
-        <form action="" method="POST">
-            <label for="username">Name: </label>
-            <input type="text" name="username" id="username" placeholder="Name" required>
-            <br>
-            <label for="email">Email: </label>
-            <input type="email" name="email" id="email" placeholder="Email" required>
-            <br>
-            <label for="password">Password: </label>
-            <input type="password" name="password" id="password" placeholder="Password" required>
-            <br>
-            <label for="positioncode">Code: </label>
-            <input type="text" name="positioncode" id="positioncode" placeholder="Code to Confirm Position" required>
-            <br>
-            <input type="submit" value="Save Changes">
+        <form action="" method="POST" class="globalforms">
+            <div class="form-group">
+                <label for="username">Name: </label>
+                <input type="text" name="username" id="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="positioncode">Code: </label>
+                <input type="text" name="positioncode" id="positioncode" class="form-control" placeholder="Code to Confirm Position" required>
+            </div>
+            <input type="submit" class="btn btn-outline-dark" value="Save Changes">
+            <button onclick="location.href='./m_home.html'" class="btn btn-dark btn-sm globalhorizontalspacing" type="button">Cancel</button>
         </form>
-        <button onclick="location.href='./signup.html'" type="button">Cancel</button>
     </main>
 
     <footer>

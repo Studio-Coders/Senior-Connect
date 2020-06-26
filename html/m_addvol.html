@@ -15,7 +15,7 @@
 <body>
 
     <header>
-        <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="./m_home.html">Senior Connect</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,27 +53,29 @@
                     </li>
                 </ul>
                 <!--TODO logout action-->
-                <form class="form-inline my-2 my-lg-0" action="logout.php">
+                <form class="form-inline my-2 my-lg-0 globalhorizontalspacing" action="logout.php">
                     <button class="btn btn-danger my-2 my-sm-0" type="submit">Log Out</button>
                 </form>
             </div>
         </nav>
         <br>
-        <h2>Add a Volunteer</h2>
+        <h2 class="pagetitle">Add a Volunteer</h2>
         <br>
     </header>
 
     <main>
-        <form action="" method="POST">
-            <label for="username">Volunteer Name: </label>
-            <input type="text" name="username" id="username" placeholder="Name" required>
-            <br>
-            <label for="positioncode">Code: </label>
-            <input type="text" name="positioncode" id="positioncode" placeholder="Code to Confirm Position" required>
-            <br>
-            <input type="submit" value="Add a Volunteer">
+        <form action="" method="POST" class="globalforms">
+            <div class="form-group">
+                <label for="username">Volunteer Name: </label>
+                <input type="text" name="username" id="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="positioncode">Code: </label>
+                <input type="text" name="positioncode" id="positioncode" class="form-control" required>
+            </div>
+            <input type="submit" class="btn btn-outline-dark" value="Add a Volunteer">
+            <button onclick="location.href='./m_home.html'" class="btn btn-dark btn-sm globalhorizontalspacing" type="button">Cancel</button>
         </form>
-        <button onclick="location.href='./homepage.html'" type="button">Cancel</button>
     </main>
 
     <footer>
