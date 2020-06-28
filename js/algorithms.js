@@ -119,44 +119,44 @@ function matchByAvailability(volunteers, seniors) {
         [ 5, 'Walter' ],
         [ 6, 'Nancy', 'Walter' ]
             ]
-        */ 
+        */
 
-        function getRoleDays(role, roleName){
+        function getRoleDays(role, roleName) {
             // Return the role's available days as an array
             roleTimes = getTimeByName(role, roleName);
-                roleDays=[];
-            for (let i = 0; i < roleTimes.length; i++){
+            roleDays = [];
+            for (let i = 0; i < roleTimes.length; i++) {
                 roleDays.push(roleTimes[i][0]);
-                }
+            }
             return roleDays;
         };
-        
+
         volunteerDays = getRoleDays(volunteers, roleName);
 
         daySeniorNameList = []
-        for (let i = 0; i < volunteerDays.length; i++){
+        for (let i = 0; i < volunteerDays.length; i++) {
             daySeniorNameList.push([]);
         }
-        
-        for (let i = 0; i < volunteerDays.length; i++){
-            for (let j = 0; j < seniors.length; j++){
+
+        for (let i = 0; i < volunteerDays.length; i++) {
+            for (let j = 0; j < seniors.length; j++) {
                 seniorDays = getRoleDays(seniors, seniors[j].name);
                 console.log(seniorDays);
-                for (let x = 0; x < seniorDays.length; x++){
-                    if (volunteerDays[i] == seniorDays[x]){
-                        if (daySeniorNameList[i].includes(volunteerDays[i]) == false){
+                for (let x = 0; x < seniorDays.length; x++) {
+                    if (volunteerDays[i] == seniorDays[x]) {
+                        if (daySeniorNameList[i].includes(volunteerDays[i]) == false) {
                             daySeniorNameList[i].push(volunteerDays[i]);
                         }
                         daySeniorNameList[i].push(seniors[j].name);
                     }
                 }
-            
-        }
+
+            }
         }
         return daySeniorNameList;
     }
 
-    function getSeniorsbyTimeAvailability(seniors,volunteers,seniorsNameDayed,volunteerName) {
+    function getSeniorsbyTimeAvailability(seniors, volunteers, seniorsNameDayed, volunteerName) {
         // Return names of seniors that matches volunteer's times as an array
         // seniorsNameDayed are all the seniors that are available on the same day as the volunteer as an array
 
@@ -164,9 +164,11 @@ function matchByAvailability(volunteers, seniors) {
             function getHours(time) {
                 return time.slice(0, time.indexOf(":"));
             }
+
             function getMinutes(time) {
                 return time.slice(time.indexOf(":") + 1, time.length - 1);
             }
+
             function calculateSlotTime(time1, time2) {
                 var hour = getHours(time2) - getHours(time1);
                 var minutes = 0;
@@ -177,64 +179,66 @@ function matchByAvailability(volunteers, seniors) {
                     minutes = getMinutes(time2) - getMinutes(time1);
                 }
                 return hours * 60 + minutes;
-
-                function getStartTime(time) {
-                    return time[0];
-                }
-                function getEndTime(time) {
-                    return time[1];
-                }
-
-                /*
-                    times1: [							true
-                        ['9:00', '10:00'],
-                        ['13:45', '15:00'],
-                        ['17:50', '20:50']
-                    ]
-                    times2: [							false
-                        ['10:00', '12:00'],
-                        ['13:30', '16:45'],
-                        ['18:00', '19:00']
-                    ]
-                */
-                var timesToget = [];
-                var sessionLength = 60; // In minutes
-
-                var index1 = 0;
-                var index2 = 0;
-                var main = true;
-
-                while (index1 < times1.length && index2 < times2.length) {
-                    if (getHours(times1[index1]) < getHours(times2[index2])) {
-                        main = false;
-                    } else if (getHours(times1[index1]) === getHours(times2[index2])) {
-                        if (getMinutes(times1[index1]) < getMinutes(times2[index2])) {
-                            main = false;
-                        }
-                    }
-                    if (!main) {
-                        if (calculateSlotTime(getStartTime(times2[index2]), getEndTime(times1[index1])) >= sessionLength) {
-                            timesToget.push(getStartTime(times2[index2]), getEndTime(times1[index1]));
-                        } else {
-                            if (index1 != times1.length - 2 && (calculateSlotTime(getStartTime(times1[index1 + 1]),getEndTime(times2[index2])) >= sessionLength)) {
-                                timesToget.push(getStartTime(times1[index1 + 1]), getEndTime(times2[index2]));
-                            }
-                        }
-                    } else {
-                        if (calculateSlotTime(getStartTime(times1[index1]), getEndTime(times2[index2])) >= sessionLength) {
-                            timesToget.push(getStartTime(times1[index1]), getEndTime(times2[index2]));
-                        } else {
-                            if (index1 != times2.length - 2 && (calculateSlotTime(getStartTime(times2[index2 + 1]),getEndTime(times1[index1])) >= sessionLength)) {
-                                timesToget.push(getStartTime(times2[index2 + 1]), getEndTime(times1[index1]));
-                            }
-                        }
-                    }
-                    index1 += 1;
-                    index2 += 1;
-                }
-                return timesToget;
             }
+
+            function getStartTime(time) {
+                return time[0];
+            }
+
+            function getEndTime(time) {
+                return time[1];
+            }
+
+            /*
+                times1: [							true
+                    ['9:00', '10:00'],
+                    ['13:45', '15:00'],
+                    ['17:50', '20:50']
+                ]
+                times2: [							false
+                    ['10:00', '12:00'],
+                    ['13:30', '16:45'],
+                    ['18:00', '19:00']
+                ]
+            */
+            var timesToget = [];
+            var sessionLength = 60; // In minutes
+
+            var index1 = 0;
+            var index2 = 0;
+            var main = true;
+
+            while (index1 < times1.length && index2 < times2.length) {
+                if (getHours(times1[index1]) < getHours(times2[index2])) {
+                    main = false;
+                } else if (getHours(times1[index1]) === getHours(times2[index2])) {
+                    if (getMinutes(times1[index1]) < getMinutes(times2[index2])) {
+                        main = false;
+                    }
+                }
+                if (!main) {
+                    if (calculateSlotTime(getStartTime(times2[index2]), getEndTime(times1[index1])) >= sessionLength) {
+                        timesToget.push(getStartTime(times2[index2]), getEndTime(times1[index1]));
+                    } else {
+                        if (index1 != times1.length - 2 && (calculateSlotTime(getStartTime(times1[index1 + 1]), getEndTime(times2[index2])) >= sessionLength)) {
+                            timesToget.push(getStartTime(times1[index1 + 1]), getEndTime(times2[index2]));
+                        }
+                    }
+                } else {
+                    if (calculateSlotTime(getStartTime(times1[index1]), getEndTime(times2[index2])) >= sessionLength) {
+                        timesToget.push(getStartTime(times1[index1]), getEndTime(times2[index2]));
+                    } else {
+                        if (index1 != times2.length - 2 && (calculateSlotTime(getStartTime(times2[index2 + 1]), getEndTime(times1[index1])) >= sessionLength)) {
+                            timesToget.push(getStartTime(times2[index2 + 1]), getEndTime(times1[index1]));
+                        }
+                    }
+                }
+                index1 += 1;
+                index2 += 1;
+            }
+            return timesToget;
         }
+
 
         allTimes = [];
         /* Example 
@@ -263,11 +267,11 @@ function matchByAvailability(volunteers, seniors) {
     }
 
     finals = [];
-    
-    for(var i = 0; i < volunteers.length; i++) {
+
+    for (var i = 0; i < volunteers.length; i++) {
         volunteerName = volunteers[i].name;
         seniorsNameDayed = getSeniorsbyDayAvailability(volunteerName);
-        finals.append({name:volunteerName, matches:getSeniorsbyTimeAvailability(seniors, volunteers, seniorsNameDayed, volunteerName)});
+        finals.append({name: volunteerName, matches: getSeniorsbyTimeAvailability(seniors, volunteers, seniorsNameDayed, volunteerName) });
     }
 
     return finals;
