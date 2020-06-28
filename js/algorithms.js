@@ -111,9 +111,49 @@ function matchByAvailability(volunteers, seniors) {
     // Given 2 arrays, one of volunteers, and one of seniors, it returns array of objects of all possible matches
     // Addresses time
 
-    function getSeniorsbyDayAvailability(volunteerName) {
-        // Return names of seniors that matches volunteer's day as an array
+    function getSeniorsbyDayAvailability(roleName) {
+        // Return names of seniors that matches volunteer's day as an array, daySeniorNameList.
+        /* Example output below:
+            [
+        [ 0, 'Nancy', 'Philomena' ],
+        [ 5, 'Walter' ],
+        [ 6, 'Nancy', 'Walter' ]
+            ]
+        */ 
+
+        function getRoleDays(role, roleName){
+            // Return the role's available days as an array
+            roleTimes = getTimeByName(role, roleName);
+                roleDays=[];
+            for (let i = 0; i < roleTimes.length; i++){
+                roleDays.push(roleTimes[i][0]);
+                }
+            return roleDays;
+        };
         
+        volunteerDays = getRoleDays(volunteers, roleName);
+
+        daySeniorNameList = []
+        for (let i = 0; i < volunteerDays.length; i++){
+            daySeniorNameList.push([]);
+        }
+        
+        for (let i = 0; i < volunteerDays.length; i++){
+            for (let j = 0; j < seniors.length; j++){
+                seniorDays = getRoleDays(seniors, seniors[j].name);
+                console.log(seniorDays);
+                for (let x = 0; x < seniorDays.length; x++){
+                    if (volunteerDays[i] == seniorDays[x]){
+                        if (daySeniorNameList[i].includes(volunteerDays[i]) == false){
+                            daySeniorNameList[i].push(volunteerDays[i]);
+                        }
+                        daySeniorNameList[i].push(seniors[j].name);
+                    }
+                }
+            
+        }
+        }
+        return daySeniorNameList;
     }
 
     function getSeniorsbyTimeAvailability(seniors,volunteers,seniorsNameDayed,volunteerName) {
