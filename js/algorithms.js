@@ -108,7 +108,7 @@ function getTimeOnWeekDay(type, name, weekday) {
 }
 
 function matchByAvailability(volunteers, seniors) {
-    // Given 2 arrays, one of volutneers, and one of seniors, it returns array of objects of all possible matches
+    // Given 2 arrays, one of volunteers, and one of seniors, it returns array of objects of all possible matches
     // Addresses time
 
     function getSeniorsbyDayAvailability(volunteerName) {
@@ -116,14 +116,9 @@ function matchByAvailability(volunteers, seniors) {
         
     }
 
-    function getSeniorsbyTimeAvailability(
-        seniors,
-        volunteers,
-        seniorsNameDayed,
-        volunteerName
-    ) {
+    function getSeniorsbyTimeAvailability(seniors,volunteers,seniorsNameDayed,volunteerName) {
         // Return names of seniors that matches volunteer's times as an array
-        // seniorsNameDayed are all the seniors that are avaiable on the same day as the volunteer as an array
+        // seniorsNameDayed are all the seniors that are available on the same day as the volunteer as an array
 
         function mainTimeMatcher(times1, times2) {
             function getHours(time) {
@@ -205,7 +200,7 @@ function matchByAvailability(volunteers, seniors) {
         /* Example 
               allTimes = [
                     {name: "Nancy", times: [[0, '13:30','16:45'],[4, '10:00','12:00']]}
-                {name: "Walter", times: [[5, '13:00','14:00'],[6, '15:00','19:00']]}
+                    {name: "Walter", times: [[5, '13:00','14:00'],[6, '15:00','19:00']]}
               ]
               */
 
@@ -226,4 +221,16 @@ function matchByAvailability(volunteers, seniors) {
         }
         return allTimes;
     }
+
+    finals = [];
+    
+    for(var i = 0; i < volunteers.length; i++) {
+        volunteerName = volunteers[i].name;
+        seniorsNameDayed = getSeniorsbyDayAvailability(volunteerName);
+        finals.append({name:volunteerName, matches:getSeniorsbyTimeAvailability(seniors, volunteers, seniorsNameDayed, volunteerName)});
+    }
+
+    return finals;
 }
+
+print(matchByAvailability(volunteers, seniors));
