@@ -1,0 +1,16 @@
+main {
+    margin-left: 2rem;
+}
+
+p {
+    display: inline;
+}
+
+.collapsedform {
+    max-width: 28rem;
+}
+
+.vertical-margins{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -1,6 +1,11 @@
 footer {
     position: relative;
-    margin-top: 15px;
+    margin-top: 2rem;
+    clear: both;
+}
+
+.pagetitle {
+    margin-left: 1rem;
 }
 
 .footerlabel {
@@ -16,4 +21,16 @@ footer {
 .backbtn {
     position: relative;
     margin: 10px;
+}
+
+.globalforms {
+    max-width: 28rem;
+    margin-left: 2rem;
+}
+
+.profile-pic {
+    float: right;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 20%;
 }
