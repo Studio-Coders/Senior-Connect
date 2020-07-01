@@ -343,6 +343,47 @@ function matchByAvailability(volunteers, seniors) {
 
 console.log(matchByAvailability(volunteers, seniors));
 
+function matchByNumVisits(finals, seniors) {
+    function getVisits(seniorName) {
+        for (var j = 0; j < seniors.length; j++) {
+            if (senior[j].name == seniorName) {
+                return senior[j].visits;
+            }
+        }
+    }
+
+    var returningFinals = [];
+    for(var i = 0; i < finals.length; i++) {
+        var volunteerTemplate = finals[i];
+        var seniorTemplate = finals[i].matches;
+        // Array of the Senior Names who have the lowest visit numbers
+        var minimumSeniorsArr = [];
+        var minimumVisits = 0;
+        for (var j = 0; j < seniorTemplate.length; j++) {
+            var x = getVisits(seniorTemplate[i].name);
+            if (x < minimumVisits) {
+                minimumVisits = x;
+                minimumSeniorsArr = [];
+                minimumSeniorsArr.push(seniorTemplate[i].name);
+            } else if (x == minimumVisits) {
+                minimumSeniorsArr.push(seniorTemplate[i].name);
+            }
+        }
+        var matches = [];
+        for (var k = 0; k < seniorTemplate.length; k++) {
+            if (minimumSeniorsArr.includes(seniorTemplate[i].name)) {
+                matches.push(seniorTemplate[i].times);
+            }
+        }
+        returningFinals.push({name:volunteerTemplate.name, matches: matches});
+    }
+
+    return returningFinals;
+
+}
+
+
+
 
 // finals = [
 //     {name: "Rex", matches: [
