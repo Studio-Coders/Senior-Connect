@@ -162,6 +162,7 @@ function matchByAvailability(volunteers, seniors) {
 
         function mainTimeMatcher(times1, times2) {
             function getHours(time) {
+                console.log(time.slice(0, time.indexOf(":")));
                 return time.slice(0, time.indexOf(":"));
             }
 
@@ -277,4 +278,65 @@ function matchByAvailability(volunteers, seniors) {
     return finals;
 }
 
-print(matchByAvailability(volunteers, seniors));
+
+// finals = [
+//     {name: "Rex", matches: [
+//                         {name: "Nancy", times: [[0, '13:30','16:45'],[4, '10:00','12:00']]}
+//                         {name: "Walter", times: [[5, '13:00','14:00'],[6, '15:00','19:00']]}
+//                   ] }
+//     {name: "Molly", matches: [
+//                         {name: "Nancy", times: [[0, '13:30','16:45'],[4, '10:00','12:00']]}
+//                         {name: "Walter", times: [[5, '13:00','14:00'],[6, '15:00','19:00']]}
+//                   ] }
+//     ];
+
+function matchByPreference(finals){
+
+    function getIntExByName(role, name){
+        for (let i = 0; i < role.length; i++){
+            if (role[i].name == name){
+                score = role[i].intEx;
+                return score;
+            }
+        }
+    }
+
+    // For every volunteer in finals, find their intex score using their name
+    
+    // 0630 note to self: need to clean up the formatting for final answer
+    for (let i = 0; i < finals.length; i++){
+        volunteerName = finals[i].name;
+        volunteerIntEx = getIntExByName(volunteers, volunteerName);
+        seniorPaired = "";
+        smallestDiff = 100;
+        for (let j = 0; j < finals[j].matches.length, j++;){ 
+            seniorIntEx = getIntExByName(seniors, finals[i].matches[j].name);
+            diff = Math.abs(volunteerIntEx - seniorIntEx);
+            if (diff < smallestDiff){
+                smallestDiff = diff;
+                seniorPaired = finals[i].matches[j].name;
+            }
+        }
+        matches = []
+        matches.push()
+        }
+    return seniorPaired;
+    }
+    // For every senior in matches, find their intex score using their name
+    // Create variable called smallest diff
+    // Calculate the difference in intex score between volunteer and senior
+    // If smaller than smallest diff, seniorwithsmallestdiff = diff !! this is the senior's name. 
+
+    // Return the match in the format of volunteer = [
+    // name:"Molly", match: {name: "Nancy", times: [[0, '13:30','16:45'],[4, '10:00','12:00']]}
+    // ]
+
+
+
+// console.log(matchByAvailability(volunteers, seniors));
+
+/* Front and backend connect todo: 
+- use JS to display the name of matched senior and time slots for the volunteer to choose (radio buttons).
+  If volunteer doesnt choose before set date (eg. sunday), then we will automatically choose one for them
+- Generate scheduled table for manager 
+*/
