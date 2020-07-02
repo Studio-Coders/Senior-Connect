@@ -224,7 +224,6 @@ function matchByAvailability(volunteers, seniors) {
 
         function mainTimeMatcher(times1, times2) {
             function getHours(time) {
-                console.log(time.slice(0, time.indexOf(":")));
                 return time.slice(0, time.indexOf(":"));
             }
 
@@ -269,7 +268,7 @@ function matchByAvailability(volunteers, seniors) {
             var index1 = 0;
             var index2 = 0;
             var main = true;
-
+            //console.log(times1, "/", times2);
             while (index1 < times1.length && index2 < times2.length) {
                 // Check which start time of the first time comes first
                 if (getHours(times1[index1][0]) < getHours(times2[index2][0])) {
@@ -281,19 +280,27 @@ function matchByAvailability(volunteers, seniors) {
                 }
 
                 if (!main) {
-                    if (calculateSlotTime(getStartTime(times2[index2]), getEndTime(times1[index1])) >= sessionLength) {
+                    // Times 2 slot in fully inside Times 1 slot
+                    if (calculateSlotTime(getStartTime(times2[index2]), getEndTime(times2[index2])) >= sessionLength && getStartTime(times1[index1]) <= getStartTime(times2[index2]) && getEndTime(times1[index1]) >= getEndTime(times2[index2])) {
+                        timesToget.push([getStartTime(times2[index2]), getEndTime(times2[index2])]);
+                    } else if (calculateSlotTime(getStartTime(times2[index2]), getEndTime(times1[index1])) >= sessionLength) {
                         timesToget.push([getStartTime(times2[index2]), getEndTime(times1[index1])]);
-                    }
-                    if (index1 != times1.length - 2 && (calculateSlotTime(getStartTime(times1[index1 + 1]), getEndTime(times2[index2])) >= sessionLength)) {
+                    } else if (index1 < times1.length - 2) {
+                        if (calculateSlotTime(getStartTime(times1[index1 + 1]), getEndTime(times2[index2])) >= sessionLength) {
                             timesToget.push([getStartTime(times1[index1 + 1]), getEndTime(times2[index2])]);
+                        }
                     }
-                    
+
                 } else {
-                    if (calculateSlotTime(getStartTime(times1[index1]), getEndTime(times2[index2])) >= sessionLength) {
+                    if (calculateSlotTime(getStartTime(times1[index1]), getEndTime(times1[index1])) >= sessionLength && getStartTime(times2[index2]) <= getStartTime(times1[index1]) && getEndTime(times2[index2]) >= getEndTime(times1[index1])) {
+                        timesToget.push([getStartTime(times1[index1]), getEndTime(times1[index1])]);
+                        console.log("4");
+                    } else if (calculateSlotTime(getStartTime(times1[index1]), getEndTime(times2[index2])) >= sessionLength) {
                         timesToget.push([getStartTime(times1[index1]), getEndTime(times2[index2])]);
-                    }
-                    if (index1 != times2.length - 2 && (calculateSlotTime(getStartTime(times2[index2 + 1]), getEndTime(times1[index1])) >= sessionLength)) {
+                    } else if (index2 < times2.length - 2) {
+                        if (calculateSlotTime(getStartTime(times2[index2 + 1]), getEndTime(times1[index1])) >= sessionLength) {
                             timesToget.push([getStartTime(times2[index2 + 1]), getEndTime(times1[index1])]);
+                        }
                     }
                 }
                 index1 += 1;
@@ -309,22 +316,19 @@ function matchByAvailability(volunteers, seniors) {
                     {name: "Nancy", times: [[0, '13:30','16:45'],[4, '10:00','12:00']]}
                     {name: "Walter", times: [[5, '13:00','14:00'],[6, '15:00','19:00']]}
               ]
-              */
+        */
 
-        
+
         for (var i = 0; i < seniorsNameDayed.length; i++) {
             for (var j = 1; j < seniorsNameDayed[i].length; j++) {
-                    var volunteerTime = getTimeOnWeekDay(volunteers, volunteerName, seniorsNameDayed[i][0]);
-                    var seniorTime = getTimeOnWeekDay(seniors,seniorsNameDayed[i][j],seniorsNameDayed[i][0]);
-                    console.log("volunteerTime", volunteerName, volunteerTime);
-                    console.log("seniorTime",seniorsNameDayed[i][j], seniorTime);
-                    console.log("day week", seniorsNameDayed[i][0]);
-                    if (volunteerTime === [[]] || seniorTime === [[]]) {
-                        var x = mainTimeMatcher(volunteerTime, seniorTime);
-                        if (x.length != 0) {
-                            allTimes.push({ name: seniorsNameDayed[j], times: x });
-                        }
+                var volunteerTime = getTimeOnWeekDay(volunteers, volunteerName, seniorsNameDayed[i][0]);
+                var seniorTime = getTimeOnWeekDay(seniors, seniorsNameDayed[i][j], seniorsNameDayed[i][0]);
+                if (volunteerTime != [[]] && seniorTime != [[]]) {
+                    var x = mainTimeMatcher(volunteerTime, seniorTime);
+                    if (x.length != 0) {
+                        allTimes.push({ name: seniorsNameDayed[i][j], times: x });
                     }
+                }
             }
         }
         return allTimes;
@@ -335,14 +339,26 @@ function matchByAvailability(volunteers, seniors) {
     for (var i = 0; i < volunteers.length; i++) {
         var volunteerName = volunteers[i].name;
         var seniorsNameDayed = getSeniorsbyDayAvailability(volunteerName);
-        finals.push({name: volunteerName, matches: getSeniorsbyTimeAvailability(seniors, volunteers, seniorsNameDayed, volunteerName) });
+        var x = getSeniorsbyTimeAvailability(seniors, volunteers, seniorsNameDayed, volunteerName);
+        finals.push({ name: volunteerName, matches: x });
     }
 
-   return finals;
+    return finals;
+}
+var results = matchByAvailability(volunteers, seniors);
+// for loop to print
+for (var i = 0; i < results.length; i++) {
+    console.log(results[i].name);
+    for (var j = 0; j < results[i].matches.length; j++) {
+        console.log("     " + results[i].matches[j].name);
+        for (var k = 0; k < results[i].matches[j].times.length; k++) {
+            console.log("          " +results[i].matches[j].times[k][0], results[i].matches[j].times[k][1]);
+        }
+
+    }
 }
 
-console.log(matchByAvailability(volunteers, seniors));
-
+// -------------------------------------------------------
 function matchByNumVisits(finals, seniors) {
     function getVisits(seniorName) {
         for (var j = 0; j < seniors.length; j++) {
@@ -353,7 +369,7 @@ function matchByNumVisits(finals, seniors) {
     }
 
     var returningFinals = [];
-    for(var i = 0; i < finals.length; i++) {
+    for (var i = 0; i < finals.length; i++) {
         var volunteerTemplate = finals[i];
         var seniorTemplate = finals[i].matches;
         // Array of the Senior Names who have the lowest visit numbers
@@ -375,15 +391,12 @@ function matchByNumVisits(finals, seniors) {
                 matches.push(seniorTemplate[i].times);
             }
         }
-        returningFinals.push({name:volunteerTemplate.name, matches: matches});
+        returningFinals.push({ name: volunteerTemplate.name, matches: matches });
     }
 
     return returningFinals;
 
 }
-
-
-
 
 // finals = [
 //     {name: "Rex", matches: [
@@ -396,11 +409,11 @@ function matchByNumVisits(finals, seniors) {
 //                   ] }
 //     ];
 
-function matchByPreference(finals){
+function matchByPreference(finals) {
 
-    function getIntExByName(role, name){
-        for (let i = 0; i < role.length; i++){
-            if (role[i].name == name){
+    function getIntExByName(role, name) {
+        for (let i = 0; i < role.length; i++) {
+            if (role[i].name == name) {
                 score = role[i].intEx;
                 return score;
             }
@@ -408,26 +421,26 @@ function matchByPreference(finals){
     }
 
     // For every volunteer in finals, find their intex score using their name
-    
+
     // 0630 note to self: need to clean up the formatting for final answer
-    for (let i = 0; i < finals.length; i++){
+    for (let i = 0; i < finals.length; i++) {
         volunteerName = finals[i].name;
         volunteerIntEx = getIntExByName(volunteers, volunteerName);
         seniorPaired = "";
         smallestDiff = 100;
-        for (let j = 0; j < finals[j].matches.length, j++;){ 
+        for (let j = 0; j < finals[j].matches.length, j++;) {
             seniorIntEx = getIntExByName(seniors, finals[i].matches[j].name);
             diff = Math.abs(volunteerIntEx - seniorIntEx);
-            if (diff < smallestDiff){
+            if (diff < smallestDiff) {
                 smallestDiff = diff;
                 seniorPaired = finals[i].matches[j].name;
             }
         }
         matches = []
         matches.push()
-        }
-    return seniorPaired;
     }
+    return seniorPaired;
+}
     // For every senior in matches, find their intex score using their name
     // Create variable called smallest diff
     // Calculate the difference in intex score between volunteer and senior
@@ -441,8 +454,8 @@ function matchByPreference(finals){
 
 // console.log(matchByAvailability(volunteers, seniors));
 
-/* Front and backend connect todo: 
+/* Front and backend connect todo:
 - use JS to display the name of matched senior and time slots for the volunteer to choose (radio buttons).
   If volunteer doesnt choose before set date (eg. sunday), then we will automatically choose one for them
-- Generate scheduled table for manager 
+- Generate scheduled table for manager
 */
