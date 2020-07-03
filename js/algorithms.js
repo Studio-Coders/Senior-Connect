@@ -155,7 +155,7 @@ function getTimesFromTimes(times) {
     // times is array of times
     // Ex. times = [0, '13:30','16:45']
     // Return ['13:30','16:45']
-    return times.slice(1, times.length - 1);
+    return times.slice(1, times.length);
 }
 
 function getTimeOnWeekDay(type, name, weekday) {
