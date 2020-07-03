@@ -110,7 +110,7 @@ var seniors = [
             [0, "18:00", "19:00"],
         ],
         intEx: 50,
-        visits: 0,
+        visits: 1,
     },
     {
         name: "Walter",
@@ -376,6 +376,7 @@ function printSeniorNameDayedFormat(results) {
 
 // -------------------------------------------------------
 function matchByNumVisits(finals, seniors) {
+    // Returns the number of visits of the senior
     function getVisits(seniorName) {
         for (var j = 0; j < seniors.length; j++) {
             if (seniors[j].name === seniorName) {
@@ -407,23 +408,25 @@ function matchByNumVisits(finals, seniors) {
         var minimumVisits = 0;
         // Iterate through the seniors for that volunteer
         for (var j = 0; j < seniorTemplate.length; j++) {
-            var x = getVisits(seniorTemplate[i].name);
+            seniorName = seniorTemplate[j].name;
+            var x = getVisits(seniorName);
             if (x < minimumVisits) {
                 minimumVisits = x;
                 minimumSeniorsArr = [];
-                minimumSeniorsArr.push(seniorTemplate[i].name);
+                minimumSeniorsArr.push(seniorName);
             } else if (x === minimumVisits) {
-                minimumSeniorsArr.push(seniorTemplate[i].name);
+                minimumSeniorsArr.push(seniorName);
             }
         }
         var matches = [];
         // Iterate through the seniors for that volunteer
         for (var k = 0; k < seniorTemplate.length; k++) {
             if (minimumSeniorsArr.includes(seniorTemplate[k].name)) {
-                matches.push(seniorTemplate[k].times);
+                matches.push({name:seniorTemplate[k].name, times:seniorTemplate[k].times});
             }
         }
         returningFinals.push({ name: volunteerTemplate.name, matches: matches });
+        
     }
     return returningFinals;
 }
@@ -446,23 +449,25 @@ console.log(printSeniorNameDayedFormat(results));
 function matchByPreference(finals) {
 
     function getIntExByName(role, name) {
-        for (let i = 0; i < role.length; i++) {
-            if (role[i].name == name) {
-                score = role[i].intEx;
+        for (var i = 0; i < role.length; i++) {
+            if (role[i].name === name) {
+                var score = role[i].intEx;
                 return score;
             }
         }
     }
 
-    // For every volunteer in finals, find their intex score using their name
+    // For every volunteer in finals, find their index score using their name
 
     // 0630 note to self: need to clean up the formatting for final answer
-    for (let i = 0; i < finals.length; i++) {
-        volunteerName = finals[i].name;
-        volunteerIntEx = getIntExByName(volunteers, volunteerName);
-        seniorPaired = "";
-        smallestDiff = 100;
-        for (let j = 0; j < finals[j].matches.length, j++;) {
+    // Iterate through the volunteers
+    for (var i = 0; i < finals.length; i++) {
+        var volunteerName = finals[i].name;
+        var volunteerIntEx = getIntExByName(volunteers, volunteerName);
+        var seniorPaired = "";
+        var smallestDiff = 100;
+        // Iterate through the matched seniors of a given volunteer
+        for (var j = 0; j < finals[j].matches.length; j++) {
             seniorIntEx = getIntExByName(seniors, finals[i].matches[j].name);
             diff = Math.abs(volunteerIntEx - seniorIntEx);
             if (diff < smallestDiff) {
@@ -470,8 +475,8 @@ function matchByPreference(finals) {
                 seniorPaired = finals[i].matches[j].name;
             }
         }
-        matches = []
-        matches.push()
+        matches = [];
+        matches.push();
     }
     return seniorPaired;
 }
