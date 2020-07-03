@@ -175,6 +175,7 @@ function matchByAvailability(volunteers, seniors) {
     // Addresses time
 
     function getSeniorsbyDayAvailability(roleName) {
+        // Pass the Volunteer's name as an argument
         // Return names of seniors that matches volunteer's day as an array, daySeniorNameList.
         /* Example output below:
             [
