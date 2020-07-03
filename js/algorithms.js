@@ -186,13 +186,13 @@ function matchByAvailability(volunteers, seniors) {
 
         function getRoleDays(role, roleName) {
             // Return the role's available days as an array
-            roleTimes = getTimeByName(role, roleName);
-            roleDays = [];
+            var roleTimes = getTimeByName(role, roleName);
+            var roleDays = [];
             for (let i = 0; i < roleTimes.length; i++) {
                 roleDays.push(roleTimes[i][0]);
             }
             return roleDays;
-        };
+        }
 
         volunteerDays = getRoleDays(volunteers, roleName);
 
@@ -268,7 +268,6 @@ function matchByAvailability(volunteers, seniors) {
             var index1 = 0;
             var index2 = 0;
             var main = true;
-            //console.log(times1, "/", times2);
             while (index1 < times1.length && index2 < times2.length) {
                 // Check which start time of the first time comes first
                 if (getHours(times1[index1][0]) < getHours(times2[index2][0])) {
@@ -294,7 +293,6 @@ function matchByAvailability(volunteers, seniors) {
                 } else {
                     if (calculateSlotTime(getStartTime(times1[index1]), getEndTime(times1[index1])) >= sessionLength && getStartTime(times2[index2]) <= getStartTime(times1[index1]) && getEndTime(times2[index2]) >= getEndTime(times1[index1])) {
                         timesToget.push([getStartTime(times1[index1]), getEndTime(times1[index1])]);
-                        console.log("4");
                     } else if (calculateSlotTime(getStartTime(times1[index1]), getEndTime(times2[index2])) >= sessionLength) {
                         timesToget.push([getStartTime(times1[index1]), getEndTime(times2[index2])]);
                     } else if (index2 < times2.length - 2) {
@@ -331,13 +329,14 @@ function matchByAvailability(volunteers, seniors) {
                     if (x.length != 0) {
                         // x = [['13:30','16:45'],['10:00','12:00']]
                         // Iterate through the time slots
-                        var y = [];
+                        var p = [];
                         for (var z = 0; z < x.length; z++) {
-                            y = [weekday];
+                            var y = [weekday];
                             y.push(x[z][0]);
-                            y.push(x[z][0]);
+                            y.push(x[z][1]);
+                            p.push(y);
                         }
-                        allTimes.push({ name: seniorsName, times: y});
+                        allTimes.push({ name: seniorsName, times: p});
                     }
                 }
             }
@@ -356,8 +355,8 @@ function matchByAvailability(volunteers, seniors) {
 
     return finals;
 }
-var results = matchByAvailability(volunteers, seniors);
 
+var results = matchByAvailability(volunteers, seniors);
 // for loop to print
 function printSeniorNameDayedFormat(results) {
     //Iterate through the volunteers
@@ -366,15 +365,14 @@ function printSeniorNameDayedFormat(results) {
         //Iterate through the seniors matched with volunteers
         for (var j = 0; j < results[i].matches.length; j++) {
             console.log("     " + results[i].matches[j].name);
-            //Iterate through the times of the senors
+            //Iterate through the times of the seniors
             for (var k = 0; k < results[i].matches[j].times.length; k++) {
-                console.log("          " + results[i].matches[j].times[k][0] + results[i].matches[j].times[k][1] + results[i].matches[j].times[k][2]);
+                console.log("          " + results[i].matches[j].times[k][0], results[i].matches[j].times[k][1], results[i].matches[j].times[k][2]);
             }
 
         }
     }
 }
-console.log(printSeniorNameDayedFormat(results));
 
 // -------------------------------------------------------
 function matchByNumVisits(finals, seniors) {
@@ -425,14 +423,13 @@ function matchByNumVisits(finals, seniors) {
                 matches.push(seniorTemplate[k].times);
             }
         }
-        console.log(matches);
         returningFinals.push({ name: volunteerTemplate.name, matches: matches });
     }
     return returningFinals;
 }
 
-//var results = matchByNumVisits(results, seniors);
-//console.log(printSeniorNameDayedFormat(results));
+var results = matchByNumVisits(results, seniors);
+console.log(printSeniorNameDayedFormat(results));
 
 
 // finals = [
