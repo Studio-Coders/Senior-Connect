@@ -98,7 +98,7 @@ function matchByPreference(finals){
         smallestDiff = 100;
         console.log(1111);
         num = finals[i].matches.length;
-        // for (var j = 0; j < num+1, j++;){ 
+        for (var j = 0; j < num+1, j++;){ 
             console.log(56534);
             seniorIntEx = getIntExByName(seniors, finals[i].matches[j].name);
             diff = Math.abs(volunteerIntEx - seniorIntEx);
@@ -117,7 +117,7 @@ function matchByPreference(finals){
             console.log(appointmentTimes);
             results.push(item);
             console.log(results);
-        // }
+        }
 
 
         }
